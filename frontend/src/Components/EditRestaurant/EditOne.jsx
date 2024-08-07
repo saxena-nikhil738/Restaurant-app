@@ -7,6 +7,7 @@ import { Dialog } from "@mui/material";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { BASE_URL } from "../../Config/Config";
+import { toast } from "react-toastify";
 
 const EditOne = ({ id }) => {
   // Create a ref for the file input element
@@ -22,6 +23,7 @@ const EditOne = ({ id }) => {
   const [location, setLocation] = useState("");
   const [resDetail, setResDetail] = useState();
   const [imgURL, setImgURL] = useState(defaultImage);
+  const [error, setError] = useState();
 
   useEffect(() => {
     setImgURL(image || defaultImage);
@@ -40,29 +42,36 @@ const EditOne = ({ id }) => {
   };
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append("name", resDetail?.name);
-    formData.append("mealType", resDetail?.mealType);
-    formData.append("price", resDetail?.price);
-    formData.append("description", resDetail?.description);
-    formData.append("location", resDetail?.location);
-    formData.append("image", image || resDetail?.image); // Ensure `image` is a File object
-    try {
-      console.log(id);
-      const response = await axios.put(
-        `${BASE_URL}/update-res/${id}`,
-        formData
-      );
+    if (!name || !price || !description || !location) {
+      setError("Please fill required details");
+    } else {
+      const formData = new FormData();
+      formData.append("name", resDetail?.name);
+      formData.append("mealType", resDetail?.mealType);
+      formData.append("price", resDetail?.price);
+      formData.append("description", resDetail?.description);
+      formData.append("location", resDetail?.location);
+      formData.append("image", image || resDetail?.image); // Ensure `image` is a File object
+      try {
+        console.log(id);
+        const response = await axios.put(
+          `${BASE_URL}/update-res/${id}`,
+          formData
+        );
 
-      if (response?.data) {
-        console.log(response.data);
-        console.log("Restaurant modified");
-        handleClose();
-      } else {
-        console.log("Failed to modify restaurant");
+        if (response?.data) {
+          handleClose();
+          toast.success("Resataurant modified", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          console.log(response.data);
+          console.log("Restaurant modified");
+        } else {
+          console.log("Failed to modify restaurant");
+        }
+      } catch (error) {
+        console.error("Error adding restaurant:", error);
       }
-    } catch (error) {
-      console.error("Error adding restaurant:", error);
     }
   };
 
@@ -132,7 +141,9 @@ const EditOne = ({ id }) => {
         <div className="res-content-parent">
           <div className="res-content">
             <div className="inp-row">
-              <p>Name of Restaurent: </p>
+              <p>
+                Name of Restaurent<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="name"
@@ -147,7 +158,9 @@ const EditOne = ({ id }) => {
               />
             </div>
             <div className="inp-row">
-              <p>Food type: </p>
+              <p>
+                Food type<span className="error">*</span> :{" "}
+              </p>
               <select
                 name="foodType"
                 id=""
@@ -165,7 +178,9 @@ const EditOne = ({ id }) => {
               </select>
             </div>
             <div className="inp-row">
-              <p>Price per person: </p>
+              <p>
+                Price per person<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="price"
@@ -180,7 +195,9 @@ const EditOne = ({ id }) => {
               />
             </div>
             <div className="inp-row">
-              <p>Description: </p>
+              <p>
+                Description<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="description"
@@ -195,7 +212,9 @@ const EditOne = ({ id }) => {
               />
             </div>
             <div className="inp-row">
-              <p>Location: </p>
+              <p>
+                Location<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="location"
@@ -210,6 +229,9 @@ const EditOne = ({ id }) => {
               />
             </div>
           </div>
+        </div>
+        <div className={error ? "error" : "invisible"}>
+          <p>{error}</p>
         </div>
         <div className="add-btns">
           <button className="add" onClick={handleSubmit}>

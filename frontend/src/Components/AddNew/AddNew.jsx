@@ -7,6 +7,7 @@ import { Dialog } from "@mui/material";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { BASE_URL } from "../../Config/Config";
+import { toast } from "react-toastify";
 
 const AddNew = () => {
   // Create a ref for the file input element
@@ -19,6 +20,7 @@ const AddNew = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [imgURL, setImgURL] = useState(defaultImage);
+  const [error, setError] = useState();
   const navigate = useNavigate();
 
   // let imgURL = defaultImage;
@@ -43,27 +45,34 @@ const AddNew = () => {
 
   const handleSubmit = async () => {
     // console.log(name);
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("mealType", mealType);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("location", location);
-    formData.append("image", image); // Ensure `image` is a File object
-    // }
+    if (!name || !price || !description || !location || !image) {
+      setError("Please fill required details");
+    } else {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("mealType", mealType);
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("location", location);
+      formData.append("image", image); // Ensure `image` is a File object
+      // }
 
-    try {
-      const response = await axios.post(`${BASE_URL}/add-new-res`, formData);
+      try {
+        const response = await axios.post(`${BASE_URL}/add-new-res`, formData);
 
-      if (response?.data) {
-        console.log(response.data);
-        console.log("Restaurant added");
-        handleClose();
-      } else {
-        console.log("Failed to add restaurant");
+        if (response?.data) {
+          handleClose();
+          console.log(response.data);
+          toast.success("Resataurant added", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          console.log("Restaurant added");
+        } else {
+          console.log("Failed to add restaurant");
+        }
+      } catch (error) {
+        console.error("Error adding restaurant:", error);
       }
-    } catch (error) {
-      console.error("Error adding restaurant:", error);
     }
   };
 
@@ -104,13 +113,21 @@ const AddNew = () => {
             <button className="upload-btn" onClick={handleIconClick}>
               Upload
             </button>
-            {image ? "" : <p>Add image</p>}
+            {image ? (
+              ""
+            ) : (
+              <p>
+                Add image <p className="error"> *</p>
+              </p>
+            )}
           </div>
         </div>
         <div className="res-content-parent">
           <div className="res-content">
             <div className="inp-row">
-              <p>Name of Restaurent: </p>
+              <p>
+                Name of Restaurent<span className="error">*</span> :
+              </p>
               <input
                 type="text"
                 name="name"
@@ -119,7 +136,9 @@ const AddNew = () => {
               />
             </div>
             <div className="inp-row">
-              <p>Food type: </p>
+              <p>
+                Food type<span className="error">*</span> :{" "}
+              </p>
               <select
                 name="foodType"
                 id=""
@@ -131,7 +150,9 @@ const AddNew = () => {
               </select>
             </div>
             <div className="inp-row">
-              <p>Price per person: </p>
+              <p>
+                Price per person<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="price"
@@ -140,7 +161,9 @@ const AddNew = () => {
               />
             </div>
             <div className="inp-row">
-              <p>Description: </p>
+              <p>
+                Description<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="description"
@@ -149,7 +172,9 @@ const AddNew = () => {
               />
             </div>
             <div className="inp-row">
-              <p>Location: </p>
+              <p>
+                Location<span className="error">*</span> :{" "}
+              </p>
               <input
                 type="text"
                 name="location"
@@ -158,7 +183,11 @@ const AddNew = () => {
               />
             </div>
           </div>
+          <div className={error ? "error" : "invisible"}>
+            <p>{error}</p>
+          </div>
         </div>
+
         <div className="add-btns">
           <button className="add" onClick={handleSubmit}>
             Add

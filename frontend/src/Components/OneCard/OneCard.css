@@ -94,4 +94,7 @@
     .single-card{
       z-index: -1;
     }
+    .single-card:hover{
+      box-shadow: 1px 2px 3px black;
+    }
   }

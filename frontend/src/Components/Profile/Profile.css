@@ -1,4 +1,4 @@
-.home-content{
+.profile-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,12 +6,12 @@
     height: 800px;
     align-items: center;
 }
-.hello-home{
+.hello-profile{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.hello-home span{
+.hello-profile span{
     display: flex;
     justify-content: center;
     font-style: italic;
@@ -35,7 +35,6 @@
     font-style: oblique;
     color: blue;
     text-decoration: none;
-
 }
 .navigate span a{
     font-weight: 500;
@@ -44,7 +43,7 @@
     justify-content: center;
 }
 @media  (max-width:998px){
-    .home-content{
+    .profile-content{
         height: 600px;
     }
 }

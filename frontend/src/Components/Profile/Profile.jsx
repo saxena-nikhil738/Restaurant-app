@@ -1,14 +1,13 @@
 import React from "react";
-import Collection from "./Collections/Collection";
-import "./Home.css";
+import "./Profile.css";
 
-const Home = () => {
+const Profile = () => {
   return (
-    <div className="home-content">
+    <div className="profile-content">
       {/* <Collection /> */}
-      <div className="hello-home">
+      <div className="hello-profile">
         <span>Hello,</span>
-        <div className="hello">from home page</div>
+        <div className="hello">from Profile page</div>
       </div>
       <div className="navigate">
         <p>Please navigate to</p>
@@ -22,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Profile;
