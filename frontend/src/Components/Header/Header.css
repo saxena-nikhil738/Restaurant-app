@@ -1,0 +1,105 @@
+.header-parent{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: fixed;
+    width: 100%;
+}
+.header{
+    display: flex;
+    width: 80%;
+    justify-self: center;
+    justify-content: space-between;
+    border-radius: 32px;
+    background: #615DA9;
+    color: white;
+}
+.logo{
+    width: 20%;
+    display: flex;justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.logo span{
+    font-size: 28px;
+}
+.nav-link{
+    width: 50%;
+}
+.nav-link ul{
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+    justify-content: space-around;
+    gap: 10px;
+   
+}
+.hamburger{
+    display: none;
+}
+.nav-link a {
+    text-decoration: none;
+    border-bottom: 2px solid transparent; /* Hidden border by default */
+    transition: border-bottom 0.4s; /* Faster transition for the border */
+}
+
+.nav-link a:hover {
+    border-bottom: 2px solid white; /* Visible border on hover */
+}
+.nav-link ul li a{
+    text-decoration: none;
+    color: white;
+}
+.nav-link a:active{
+    color: red;
+}
+
+@media  (max-width:998px){
+    .header-parent{
+        margin-top: 0px;
+    }
+    .header{
+        height: 50px;
+        width: 98%;
+        border-radius: 4px;
+    }
+    .logo{
+        width: 50%;
+    }
+    .hamburger{
+        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+    .nav-link{
+        display: none;
+    }
+    .ham-link{
+        background: black;
+        border: 1px solid black;
+        height: 180px;
+        width: 200px;
+        padding: 10px;
+        position: fixed;
+        right: 35px;
+        top: 35px;
+        z-index: 100;
+        border-radius: 4px;
+    }
+    .ham-link ul{
+        list-style-type: none;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        color: white;
+    }
+    .ham-link a{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+    }
+    
+}

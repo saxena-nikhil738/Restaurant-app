@@ -1,0 +1,159 @@
+.collections-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 780px;
+    overflow-y: scroll;
+    position: relative;
+    top: 90px;
+}
+::-webkit-scrollbar{
+    overflow-y: hidden;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 10px;
+    float: left;
+}
+.heading p{
+    margin-left: 10%;
+}
+.collections-parent{
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+    width: 80%;
+}
+.collections{
+    display: flex;
+    gap: 6.6%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* width: 80%; */
+}
+.single-card{
+    /* border: 1px solid black; */
+    /* width: 20%; */
+    min-height: 300px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+    background: #f0efef;
+    margin-bottom: 30px;
+}
+
+
+.res-details {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.res-details p{
+    margin: 0px 8px;
+}
+.res-details p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .res-name, .res-mealType, .res-items, .res-location {
+    max-width: 250px; /* Adjust according to your layout */
+  }
+  
+  .search-box {
+    /* margin-bottom: 20px; */
+    margin-right: 13%;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  .add-card{
+    border: 1px solid black;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: #f0efef;
+}
+.inner-add{
+    border: 1px solid black;
+    height: 200px;
+    width: 70%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    cursor: pointer;
+}
+.inner-add p{
+    font-size: 20px;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.add-card:hover{
+    box-shadow: 1px 2px 3px black;
+}
+.loading{
+    height: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 998px) {
+    .collections-content{
+        z-index: -1;
+        height: 80%;
+        padding: 0px ;
+        position: static;
+        
+    }
+    .collections-parent{
+        margin-top: 0px;
+        align-items: center;
+    }
+    .heading{
+        display: flex;
+        flex-direction: column;
+    }
+    .collections{
+        gap: 20px;
+        justify-content: center;
+    }
+    .single-card{
+        margin-bottom: 0px;
+        border: 1px solid rgb(121, 121, 121);
+    }
+    .search-box{
+        margin-right: 0px;
+    }
+    .heading p, .heading{
+        margin-left: 0px;
+    }
+    .heading p{
+        margin-top: 50px;
+        margin-bottom: 10px;
+    }
+}
