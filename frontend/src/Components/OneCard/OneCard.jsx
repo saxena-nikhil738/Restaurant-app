@@ -98,7 +98,7 @@ const OneCard = ({ e }) => {
         <p>
           {truncateText(collection.mealType, 50)} | $ {collection.price} /person
         </p>
-        <p>{truncateText(collection.items, 50)}</p>
+        <p>{truncateText(collection.description, 50)}</p>
         <p>{truncateText(collection.location, 50)}</p>
       </div>
     </div>
