@@ -33,7 +33,7 @@
 }
 .collections{
     display: flex;
-    gap: 6.6%;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: space-between;
     /* width: 80%; */
