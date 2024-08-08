@@ -93,7 +93,7 @@
   @media (max-width: 998px) {
     .single-card{
       z-index: -1;
-      width: 85%;
+      width: 300px;
     }
     .single-card:hover{
       box-shadow: 1px 2px 3px black;
