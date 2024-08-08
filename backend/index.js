@@ -130,7 +130,7 @@ app.get("/get-one-restaurant", async (req, res) => {
 // Use routes
 app.get('/', (req, res)=>{
   res.send("Server is running");
-}
+});
 // Start server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
